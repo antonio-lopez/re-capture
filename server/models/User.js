@@ -25,4 +25,21 @@ const userSchema = new mongoose.Schema({
   },
 });
 
+// hash passwords before saving them to the document
+// using FUNCTION to access "this" that is tied to the user password object
+userSchema.pre('save', async function (next) {
+  const salt = await bcrypt.genSalt(10);
+  this.password = await bcrypt.hash(this.password, salt);
+  next();
+});
+
+// define our own custom document instance methods
+userSchema.methods.createJWT = function () {
+  return jwt.sign(
+    { userId: this._id, name: this.name },
+    process.env.JWT_SECRET,
+    { expiresIn: process.env.JWT_LIFETIME }
+  );
+};
+
 module.exports = mongoose.model('User', userSchema);

@@ -28,8 +28,9 @@ app.get('/', (req, res) => {
   res.send('jobs api');
 });
 
-// app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/auth', authRouter);
 // authenticateUser middleware, has a next() function to get to entriesRouterRouter
+app.use('/api/v1/entries', entriesRouter);
 // app.use('/api/v1/entries', authenticateUser, entriesRouter);
 // app.use(notFoundMiddleware);
 // app.use(errorHandlerMiddleware);

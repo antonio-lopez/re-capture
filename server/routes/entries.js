@@ -10,7 +10,7 @@ const {
 
 router.get('/', getAllEntries);
 router.get('/:id', getEntry);
-router.post('/:id', createEntry);
+router.post('/', createEntry);
 router.patch('/:id', updateEntry);
 router.delete('/:id', deleteEntry);
 

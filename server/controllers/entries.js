@@ -1,10 +1,12 @@
 const Entry = require('../models/Entry');
+const { StatusCodes } = require('http-status-codes');
+const { BadRequestError, NotFoundError } = require('../errors');
 
 const getAllEntries = async (req, res) => {
   const entries = await Entry.find({ createdBy: req.user.userId }).sort(
     'createdAt'
   );
-  res.status(200).json({ entries });
+  res.status(StatusCodes.OK).json({ entries });
 };
 const getEntry = async (req, res) => {
   const {
@@ -12,21 +14,20 @@ const getEntry = async (req, res) => {
     params: { id: entryId },
   } = req;
 
-  try {
-    const entry = await Entry.findOne({ _id: entryId, createdBy: userId });
-    res.status(200).json({ entry });
-  } catch (error) {
-    res.status(404).json({ message: 'No entry with that ID.' });
+  const entry = await Entry.findOne({
+    _id: entryId,
+    createdBy: userId,
+  });
+  if (!entry) {
+    throw new NotFoundError('No entry with that ID');
   }
+  res.status(StatusCodes.OK).json({ entry });
 };
 const createEntry = async (req, res) => {
   req.body.createdBy = req.user.userId;
-  try {
-    const entry = await Entry.create(req.body);
-    res.status(201).json({ entry });
-  } catch (error) {
-    res.status(400).json({ message: 'Cannot leave title or message empty' });
-  }
+
+  const entry = await Entry.create(req.body);
+  res.status(StatusCodes.CREATED).json({ entry });
 };
 const updateEntry = async (req, res) => {
   const {
@@ -35,20 +36,20 @@ const updateEntry = async (req, res) => {
     params: { id: entryId },
   } = req;
 
-  // if (title === '' || message === '') {
-  //   res.status(400).json({ message: 'Cannot leave title or message empty' });
-  // }
-
-  try {
-    const entry = await Entry.findByIdAndUpdate(
-      { _id: entryId, createdBy: userId },
-      req.body,
-      { new: true, runValidators: true }
-    );
-    res.status(200).json({ entry });
-  } catch (error) {
-    res.status(404).json(error.message);
+  if (title === '' || message === '') {
+    throw new BadRequestError('Cannot leave title or message empty');
   }
+
+  const entry = await Entry.findByIdAndUpdate(
+    { _id: entryId, createdBy: userId },
+    req.body,
+    { new: true, runValidators: true }
+  );
+
+  if (!entry) {
+    throw new NotFoundError('No entry with that ID');
+  }
+  res.status(StatusCodes.OK).json({ entry });
 };
 const deleteEntry = async (req, res) => {
   const {
@@ -56,15 +57,14 @@ const deleteEntry = async (req, res) => {
     params: { id: entryId },
   } = req;
 
-  try {
-    const entry = await Entry.findByIdAndRemove({
-      _id: entryId,
-      createdBy: userId,
-    });
-    res.status(200).send();
-  } catch (error) {
-    res.status(404).json({ message: 'No entry with that ID.' });
+  const entry = await Entry.findByIdAndRemove({
+    _id: entryId,
+    createdBy: userId,
+  });
+  if (!entry) {
+    throw new NotFoundError('No entry with that ID');
   }
+  res.status(StatusCodes.OK).send();
 };
 
 module.exports = {

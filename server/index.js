@@ -1,4 +1,6 @@
 require('dotenv').config();
+require('express-async-errors');
+
 const express = require('express');
 const app = express();
 
@@ -31,8 +33,8 @@ app.get('/', (req, res) => {
 app.use('/api/v1/auth', authRouter);
 // authenticateUser middleware, has a next() function to get to entriesRouter
 app.use('/api/v1/entries', authenticateUser, entriesRouter);
-// app.use(notFoundMiddleware);
-// app.use(errorHandlerMiddleware);
+app.use(errorHandlerMiddleware);
+app.use(notFoundMiddleware);
 
 const port = process.env.PORT || 3000;
 

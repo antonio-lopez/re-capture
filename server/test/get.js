@@ -1,20 +1,20 @@
-require('dotenv').config();
-const express = require('express');
-const app = express();
-const mongoose = require('mongoose');
-const chai = require('chai');
-const expect = chai.expect;
-const chaiHttp = require('chai-http');
-const request = require('supertest');
-chai.use(chaiHttp);
-let should = chai.should();
-const User = require('../models/User');
+// require('dotenv').config();
+// const express = require('express');
+// const app = express();
+// const mongoose = require('mongoose');
+// const chai = require('chai');
+// const expect = chai.expect;
+// const chaiHttp = require('chai-http');
+// const request = require('supertest');
+// chai.use(chaiHttp);
+// let should = chai.should();
+// const User = require('../models/User');
 
 // const start = require('./index');
 
-const connectDB = require('../db/connect');
-const authRouter = require('../routes/auth');
-const entryRouter = require('../routes/entries');
+// const connectDB = require('../db/connect');
+// const authRouter = require('../routes/auth');
+// const entryRouter = require('../routes/entries');
 // const conn = require('../test/index');
 
 // describe('POST /register', () => {

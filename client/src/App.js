@@ -9,8 +9,13 @@ const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path='/' exact component={Home} />
-        <Route path='/auth' exact component={Auth} />
+        <Route path='/' exact component={() => <Redirect to='/entries' />} />
+        <Route path='/entries' exact component={Home} />
+        <Route
+          path='/auth'
+          exact
+          component={() => (!user ? <Auth /> : <Redirect to='/entries' />)}
+        />
       </Switch>
     </BrowserRouter>
   );

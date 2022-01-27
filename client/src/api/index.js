@@ -16,10 +16,6 @@ API.interceptors.request.use((req) => {
   return req;
 });
 
-// /api/v1
-
-console.log(url);
-
 export const fetchAPI = () => API.get('');
 export const signIn = (formData) => API.post('/api/v1/auth/login', formData);
 export const signUp = (formData) => API.post('/api/v1/auth/register', formData);

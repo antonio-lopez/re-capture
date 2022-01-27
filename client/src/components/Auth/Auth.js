@@ -17,7 +17,6 @@ const Auth = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('handleSubmit', formData);
     if (isSignUp) {
       dispatch(register(formData, history));
     } else {
@@ -26,7 +25,6 @@ const Auth = () => {
   };
 
   const handleChange = (e) => {
-    console.log('handleChange', formData);
     // only update the target fields with their respective names
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -42,24 +40,39 @@ const Auth = () => {
         {isSignUp && (
           <div>
             <label name='name'>Username</label>
-            <input type='text' name='name' onChange={handleChange} required />
+            <input
+              data-cy='userId'
+              type='text'
+              name='name'
+              onChange={handleChange}
+              required
+            />
           </div>
         )}
         <div>
           <label name='email'>Email</label>
-          <input type='email' name='email' onChange={handleChange} required />
+          <input
+            data-cy='userEmail'
+            type='email'
+            name='email'
+            onChange={handleChange}
+            required
+          />
         </div>
         <div>
           <label name='password'>Password</label>
           <input
+            data-cy='userPassword'
             type='password'
             name='password'
             onChange={handleChange}
             required
           />
         </div>
-        <button type='submit'>{isSignUp ? 'Sign Up' : 'Sign In'}</button>
-        <button onClick={switchMode}>
+        <button data-cy='submit' type='submit'>
+          {isSignUp ? 'Sign Up' : 'Sign In'}
+        </button>
+        <button data-cy='switchMode' onClick={switchMode}>
           {isSignUp
             ? 'Already have an account? Sign In'
             : "Don't have an account? Sign Up"}

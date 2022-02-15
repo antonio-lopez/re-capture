@@ -6,7 +6,8 @@ const getAllEntries = async (req, res) => {
   const entries = await Entry.find({ createdBy: req.user.userId }).sort(
     'createdAt'
   );
-  res.status(StatusCodes.OK).json({ entries });
+  // res.status(StatusCodes.OK).json({ entries });
+  res.status(StatusCodes.OK).json(entries);
 };
 const getEntry = async (req, res) => {
   const {
@@ -21,13 +22,15 @@ const getEntry = async (req, res) => {
   if (!entry) {
     throw new NotFoundError('No entry with that ID');
   }
-  res.status(StatusCodes.OK).json({ entry });
+  // res.status(StatusCodes.OK).json({ entry });
+  res.status(StatusCodes.OK).json(entry);
 };
 const createEntry = async (req, res) => {
   req.body.createdBy = req.user.userId;
 
   const entry = await Entry.create(req.body);
-  res.status(StatusCodes.CREATED).json({ entry });
+  // res.status(StatusCodes.CREATED).json({ entry });
+  res.status(StatusCodes.CREATED).json(entry);
 };
 const updateEntry = async (req, res) => {
   const {
@@ -49,7 +52,8 @@ const updateEntry = async (req, res) => {
   if (!entry) {
     throw new NotFoundError('No entry with that ID');
   }
-  res.status(StatusCodes.OK).json({ entry });
+  // res.status(StatusCodes.OK).json({ entry });
+  res.status(StatusCodes.OK).json(entry);
 };
 const deleteEntry = async (req, res) => {
   const {

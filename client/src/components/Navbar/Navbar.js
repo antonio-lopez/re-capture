@@ -16,28 +16,36 @@ const Navbar = () => {
     setUser(null);
   };
 
+  const login = () => {
+    history.push('/auth');
+  };
+
   useEffect(() => {
     const token = user?.token;
 
     // logout the user after token expires in a hour
     if (token) {
       const decodedToken = decode(token);
-      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+      if (decodedToken.exp * 1000 < new Date().getTime()) {
+        logout();
+      }
     }
 
     setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location, user?.token]);
 
+  console.log(user);
+
   return (
     <>
-      <h1>Hello {user.user.name} </h1>
-
       {user ? (
-        <button onClick={logout}>Logout</button>
+        <>
+          <h1>Hello {user.user.name} </h1>
+          <button onClick={logout}>Logout</button>
+        </>
       ) : (
-        <button component={Link} to='/auth'>
-          Sign In
-        </button>
+        // <button component={Link} to='/auth'>
+        <button onClick={login}>Sign In</button>
       )}
     </>
   );

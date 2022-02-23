@@ -8,7 +8,7 @@ import Entry from './Entry/Entry';
 const Entries = () => {
   // const dispatch = useDispatch();
   const { entries } = useSelector((state) => state.entriesReducer);
-  const { authData } = useSelector((state) => state.authReducer);
+  // const { authData } = useSelector((state) => state.authReducer);
 
   // useEffect(() => {
   //   dispatch(getEntries());
@@ -27,7 +27,7 @@ const Entries = () => {
   //   entries.map((entry) => entry)
   // );
   console.log('entry', entries);
-  console.log('User: ', authData.user.name);
+  // console.log('User: ', authData.user.name);
 
   return (
     <div>

@@ -17,6 +17,8 @@ export const entriesReducer = (state = { entries: [] }, action) => {
   switch (action.type) {
     case FETCH_ALL:
       return { ...state, entries: action.payload };
+    case FETCH_ENTRY:
+      return { ...state, entry: action.payload };
     default:
       return state;
   }

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { createEntry } from '../../actions/entries';
 import { useHistory } from 'react-router-dom';
 
-const NewEntry = () => {
+const Form = () => {
   const [entryData, setEntryData] = useState({
     title: '',
     message: '',
@@ -57,4 +57,4 @@ const NewEntry = () => {
   );
 };
 
-export default NewEntry;
+export default Form;

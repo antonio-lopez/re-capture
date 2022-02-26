@@ -9,8 +9,8 @@ const Home = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const newEntry = () => {
-    history.push('/newentry');
+  const createEntry = () => {
+    history.push('/createentry');
   };
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Home = () => {
     <>
       <Navbar />
       <h1>Home Component</h1>
-      <button onClick={newEntry}>New Entry</button>
+      <button onClick={createEntry}>Create Entry</button>
       <Entries />
     </>
   );

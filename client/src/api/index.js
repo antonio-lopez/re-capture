@@ -23,4 +23,5 @@ export const fetchEntries = () => API.get('/api/v1/entries');
 export const fetchEntry = (id) => API.get(`/api/v1/entries/${id}`);
 export const createEntry = (newEntry) => API.post('/api/v1/entries', newEntry);
 export const deleteEntry = (id) => API.delete(`/api/v1/entries/${id}`);
-// export const
+export const updateEntry = (id, updatedEntry) =>
+  API.patch(`/api/v1/entries/${id}`, updatedEntry);

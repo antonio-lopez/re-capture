@@ -21,6 +21,8 @@ export const entriesReducer = (state = { entries: [] }, action) => {
       return { ...state, entry: action.payload };
     case CREATE:
       return { ...state, entries: [...state.entries, action.payload] };
+    case UPDATE:
+      return {};
     case DELETE:
       return {
         ...state,

@@ -42,3 +42,12 @@ export const deleteEntry = (id) => async (dispatch) => {
     console.log(error);
   }
 };
+export const updateEntry = (id, entry, history) => async (dispatch) => {
+  try {
+    const { data } = await api.updateEntry(id, entry);
+    dispatch({ type: UPDATE, payload: data });
+    history.push(`/entries/${data._id}`);
+  } catch (error) {
+    console.log(error);
+  }
+};

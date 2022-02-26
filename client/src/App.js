@@ -23,6 +23,7 @@ const App = () => {
         <Route path='/entries' exact component={Home} />
         <Route path='/entries/:id' component={EntryDetails} />
         <Route path='/createentry' component={Form} />
+        <Route path='/editentry/:id' component={Form} />
       </Switch>
     </BrowserRouter>
   );

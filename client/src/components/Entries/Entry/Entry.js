@@ -6,7 +6,7 @@ const Entry = ({ entry }) => {
   const history = useHistory();
 
   const openEntry = () => {
-    history.push(`/entries/${entry._id}`);
+    history.push(`/entries/${_id}`);
   };
   return (
     <>

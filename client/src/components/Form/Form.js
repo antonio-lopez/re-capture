@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { createEntry } from '../../actions/entries';
-import { useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createEntry, getEntry, updateEntry } from '../../actions/entries';
+import { useHistory, useParams } from 'react-router-dom';
 
 const Form = () => {
   const [entryData, setEntryData] = useState({
@@ -11,11 +11,34 @@ const Form = () => {
   });
   const dispatch = useDispatch();
   const history = useHistory();
+  const { id } = useParams();
+  const { entry } = useSelector((state) => state.entriesReducer);
+
+  useEffect(() => {
+    dispatch(getEntry(id));
+  }, [id, dispatch]);
+
+  console.log('Form entry fetched: ', entry);
+
+  useEffect(() => {
+    if (entry) setEntryData(entry);
+  }, [entry]);
+
+  console.log('SetEntryData: ', entryData);
+
+  const handleCancel = (e) => {
+    e.preventDefault();
+    history.push(`/entries/${id}`);
+    clear();
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(createEntry({ ...entryData }, history));
-    dispatch(createEntry(entryData, history));
+    if (id) {
+      dispatch(updateEntry(id, entryData, history));
+    } else {
+      dispatch(createEntry(entryData, history));
+    }
     clear();
   };
 
@@ -33,15 +56,27 @@ const Form = () => {
 
   return (
     <>
-      <div>NewEntry</div>
+      <div>{id ? 'Edit Entry' : 'Create Entry'}</div>
       <form onSubmit={handleSubmit}>
         <div>
           <label name='title'>Title</label>
-          <input type='text' name='title' onChange={handleChange} required />
+          <input
+            type='text'
+            name='title'
+            value={entryData.title}
+            onChange={handleChange}
+            required
+          />
         </div>
         <div>
           <label name='message'>Message</label>
-          <input type='text' name='message' onChange={handleChange} required />
+          <input
+            type='text'
+            name='message'
+            value={entryData.message}
+            onChange={handleChange}
+            required
+          />
         </div>
         {/* <div>
           <label name='selectedFile'>Selected File</label>
@@ -51,7 +86,12 @@ const Form = () => {
             onChange={handleChange}
           />
         </div> */}
-        <button type='submit'>Create New Entry</button>
+        <button type='submit'>Submit</button>
+        {id && (
+          <button type='submit' onClick={handleCancel}>
+            Cancel
+          </button>
+        )}
       </form>
     </>
   );

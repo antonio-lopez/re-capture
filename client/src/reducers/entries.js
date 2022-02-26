@@ -22,7 +22,12 @@ export const entriesReducer = (state = { entries: [] }, action) => {
     case CREATE:
       return { ...state, entries: [...state.entries, action.payload] };
     case UPDATE:
-      return {};
+      return {
+        ...state,
+        entries: state.entries.map((entry) =>
+          entry._id === action.payload._id ? action.payload : entry
+        ),
+      };
     case DELETE:
       return {
         ...state,

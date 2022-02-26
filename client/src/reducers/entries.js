@@ -19,6 +19,8 @@ export const entriesReducer = (state = { entries: [] }, action) => {
       return { ...state, entries: action.payload };
     case FETCH_ENTRY:
       return { ...state, entry: action.payload };
+    case CREATE:
+      return { ...state, entries: [...state.entries, action.payload] };
     default:
       return state;
   }

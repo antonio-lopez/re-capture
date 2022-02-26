@@ -25,3 +25,12 @@ export const getEntry = (id) => async (dispatch) => {
     console.log(error);
   }
 };
+export const createEntry = (newEntry, history) => async (dispatch) => {
+  try {
+    const { data } = await api.createEntry(newEntry);
+    dispatch({ type: CREATE, payload: data });
+    history.push(`/entries/${data._id}`);
+  } catch (error) {
+    console.log(error);
+  }
+};

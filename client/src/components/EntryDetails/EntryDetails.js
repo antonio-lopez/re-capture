@@ -26,6 +26,7 @@ const EntryDetails = () => {
       <div>
         <h1>{entry.title}</h1>
         <div>{new Date(entry.createdAt).toDateString()}</div>
+        <div>{new Date(entry.createdAt).toLocaleTimeString('en-US')}</div>
         <div>{entry.message}</div>
       </div>
       <button onClick={() => history.push(`/editentry/${id}`)}>Edit</button>

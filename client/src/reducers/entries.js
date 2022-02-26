@@ -21,6 +21,11 @@ export const entriesReducer = (state = { entries: [] }, action) => {
       return { ...state, entry: action.payload };
     case CREATE:
       return { ...state, entries: [...state.entries, action.payload] };
+    case DELETE:
+      return {
+        ...state,
+        entries: state.entries.filter((entry) => entry._id !== action.payload),
+      };
     default:
       return state;
   }

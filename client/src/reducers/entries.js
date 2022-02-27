@@ -4,15 +4,9 @@ import {
   CREATE,
   UPDATE,
   DELETE,
+  CLEAR,
 } from '../constants/actionTypes';
-// export const entriesReducer = (entries = [], action) => {
-//   switch (action.type) {
-//     case FETCH_ALL:
-//       return action.payload;
 
-//     default:
-//       return entries;
-//   }
 export const entriesReducer = (state = { entries: [] }, action) => {
   switch (action.type) {
     case FETCH_ALL:
@@ -33,6 +27,8 @@ export const entriesReducer = (state = { entries: [] }, action) => {
         ...state,
         entries: state.entries.filter((entry) => entry._id !== action.payload),
       };
+    case CLEAR:
+      return { ...state, entries: null, entry: null };
     default:
       return state;
   }

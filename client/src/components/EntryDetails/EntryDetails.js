@@ -30,7 +30,7 @@ const EntryDetails = () => {
         <div>{entry.message}</div>
       </div>
       <button onClick={() => history.push(`/editentry/${id}`)}>Edit</button>
-      <button onClick={() => history.push('/')}>Home</button>
+      <button onClick={() => history.push('/entries')}>Home</button>
       <button onClick={() => removeEntry(id)}>Delete</button>
     </div>
   );

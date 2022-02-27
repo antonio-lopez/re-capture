@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import decode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
-import { LOGOUT } from '../../constants/actionTypes';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { LOGOUT, CLEAR } from '../../constants/actionTypes';
+import { useHistory, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -10,15 +10,12 @@ const Navbar = () => {
   const history = useHistory();
   const location = useLocation();
 
-  const logout = () => {
+  const logout = useCallback(() => {
     dispatch({ type: LOGOUT });
-    history.push('/auth');
+    dispatch({ type: CLEAR });
+    history.push('/');
     setUser(null);
-  };
-
-  const login = () => {
-    history.push('/auth');
-  };
+  }, [dispatch, history]);
 
   useEffect(() => {
     const token = user?.token;
@@ -32,21 +29,14 @@ const Navbar = () => {
     }
 
     setUser(JSON.parse(localStorage.getItem('profile')));
-  }, [location, user?.token]);
+  }, [location, user?.token, logout]);
 
   console.log(user);
 
   return (
     <>
-      {user ? (
-        <>
-          <h1>Hello {user.user.name} </h1>
-          <button onClick={logout}>Logout</button>
-        </>
-      ) : (
-        // <button component={Link} to='/auth'>
-        <button onClick={login}>Sign In</button>
-      )}
+      <h1>Hello {user.user.name} </h1>
+      <button onClick={logout}>Logout</button>
     </>
   );
 };

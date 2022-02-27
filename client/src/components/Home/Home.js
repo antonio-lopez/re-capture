@@ -9,14 +9,13 @@ const Home = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const createEntry = () => {
-    history.push('/createentry');
-  };
-
   useEffect(() => {
     dispatch(getEntries());
   }, [dispatch]);
 
+  const createEntry = () => {
+    history.push('/createentry');
+  };
   return (
     <>
       <Navbar />

@@ -28,6 +28,7 @@ const EntryDetails = () => {
         <div>{new Date(entry.createdAt).toDateString()}</div>
         <div>{new Date(entry.createdAt).toLocaleTimeString('en-US')}</div>
         <div>{entry.message}</div>
+        <img src={entry.selectedFile} alt='' />
       </div>
       <button onClick={() => history.push(`/editentry/${id}`)}>Edit</button>
       <button onClick={() => history.push('/entries')}>Home</button>

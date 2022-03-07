@@ -15,6 +15,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Switch>
+        <Route path='/' exact component={Main} />
         <Route
           path='/auth'
           exact
@@ -24,7 +25,6 @@ const App = () => {
         <Route path='/entries/:id' component={EntryDetails} />
         <Route path='/createentry' component={CreateEntry} />
         <Route path='/editentry/:id' component={UpdateEntry} />
-        <Route path='/' exact component={Main} />
       </Switch>
     </BrowserRouter>
   );

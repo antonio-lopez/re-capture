@@ -114,7 +114,7 @@ const Auth = () => {
               {/* <button className='uppercase block w-full p-4 text-lg rounded-full outline hover:bg-indigo-600 focus:outline-none'> */}
               <button
                 type='submit'
-                className='uppercase block w-full p-4 text-lg rounded-full outline hover:bg-gray-400 focus:outline-none'
+                className='uppercase block w-full p-4 text-lg rounded-full outline hover:bg-gray-400'
               >
                 {isSignUp ? 'sign up' : 'sign in'}
               </button>

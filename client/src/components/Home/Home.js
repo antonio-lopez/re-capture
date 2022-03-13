@@ -3,6 +3,7 @@ import Navbar from '../Navbar/Navbar';
 import Entries from '../Entries/Entries';
 import { useDispatch } from 'react-redux';
 import { getEntries } from '../../actions/entries';
+// import MonthlyInfo from '../MonthlyInfo/MonthlyInfo';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -12,10 +13,11 @@ const Home = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <div>
       <Navbar />
+      {/* <MonthlyInfo /> */}
       <Entries />
-    </>
+    </div>
   );
 };
 

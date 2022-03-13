@@ -9,6 +9,9 @@ const EntryDetails = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const { id } = useParams();
+  const [entryImg, ,] = useState(
+    'https://source.unsplash.com/random/900×700/?nature'
+  );
   const [selectedImg, setSelectedImg] = useState(null);
 
   useEffect(() => {
@@ -20,7 +23,14 @@ const EntryDetails = () => {
     history.push('/entries');
   };
 
-  console.log(entry);
+  const handleClick = () => {
+    if (!entry.selectedFile) {
+      setSelectedImg(entryImg);
+    } else {
+      setSelectedImg(entry.selectedFile);
+    }
+  };
+
   if (!entry) return null;
 
   return (
@@ -29,24 +39,25 @@ const EntryDetails = () => {
         <div className='relative -mx-4 top-0 pt-[17%] overflow-hidden'>
           <img
             className='absolute inset-0 object-cover object-top w-full h-full filter blur'
-            src={entry.selectedFile}
+            src={entry.selectedFile ? entry.selectedFile : entryImg}
             alt='blurred background'
           />
         </div>
 
-        <div className='mt-[-10%] w-1/2 mx-auto'>
+        <div className='mt-[-10%] w-1/2 mx-auto hover:cursor-pointer'>
           <div
             className='relative pt-[56.25%] overflow-hidden rounded-2xl'
-            onClick={() => setSelectedImg(entry.selectedFile)}
+            onClick={handleClick}
           >
             <img
               className='w-full h-full absolute inset-0 object-cover'
-              src={entry.selectedFile}
-              alt=''
+              src={entry.selectedFile ? entry.selectedFile : entryImg}
+              alt='journal entry cover'
             />
           </div>
         </div>
 
+        {/* pop-up enlarged image */}
         {selectedImg && (
           <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
         )}
@@ -117,17 +128,6 @@ const EntryDetails = () => {
             </svg>
           </button>
         </div>
-
-        {/* <div>
-          <h1>{entry.title}</h1>
-          <div>{new Date(entry.createdAt).toDateString()}</div>
-          <div>{new Date(entry.createdAt).toLocaleTimeString('en-US')}</div>
-          <div>{entry.message}</div>
-          <img src={entry.selectedFile} alt='' />
-        </div>
-        <button onClick={() => history.push(`/editentry/${id}`)}>Edit</button>
-        <button onClick={() => history.push('/entries')}>Home</button>
-        <button onClick={() => removeEntry(id)}>Delete</button> */}
       </main>
     </div>
   );

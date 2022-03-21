@@ -12,7 +12,7 @@ const Navbar = () => {
 
   const logout = useCallback(() => {
     dispatch({ type: LOGOUT });
-    dispatch({ type: CLEAR });
+    // dispatch({ type: CLEAR });
     history.push('/');
     setUser(null);
   }, [dispatch, history]);

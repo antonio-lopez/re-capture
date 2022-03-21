@@ -3,9 +3,9 @@ import Navbar from '../Navbar/Navbar';
 import Entries from '../Entries/Entries';
 import { useDispatch } from 'react-redux';
 import { getEntries } from '../../actions/entries';
-// import MonthlyInfo from '../MonthlyInfo/MonthlyInfo';
 
 const Home = () => {
+  const user = JSON.parse(localStorage.getItem('profile'));
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -14,9 +14,12 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar />
-      {/* <MonthlyInfo /> */}
-      <Entries />
+      {user && (
+        <div className='h-screen bg-[#E2E1E7]'>
+          <Navbar />
+          <Entries />
+        </div>
+      )}
     </div>
   );
 };

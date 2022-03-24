@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import decode from 'jwt-decode';
 import { useDispatch } from 'react-redux';
-import { LOGOUT, CLEAR } from '../../constants/actionTypes';
+import { LOGOUT } from '../../constants/actionTypes';
 import { useHistory, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
@@ -12,8 +12,8 @@ const Navbar = () => {
 
   const logout = useCallback(() => {
     dispatch({ type: LOGOUT });
-    // dispatch({ type: CLEAR });
     history.push('/');
+    history.go(0);
     setUser(null);
   }, [dispatch, history]);
 

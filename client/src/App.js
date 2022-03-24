@@ -14,16 +14,20 @@ const App = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path='/entries' component={Home} />
-        <Route exact path='/entries/:id' component={EntryDetails} />
-        <Route exact path='/createentry' component={CreateEntry} />
-        <Route exact path='/editentry/:id' component={UpdateEntry} />
         <Route exact path='/' component={Main} />
         <Route
           exact
           path='/auth'
           component={() => (!user ? <Auth /> : <Redirect to='/entries' />)}
         />
+        <Route exact path='/auth' component={Auth} />
+        <Route exact path='/entries' component={Home} />
+        <Route exact path='/entries/:id' component={EntryDetails} />
+        <Route exact path='/createentry' component={CreateEntry} />
+        <Route exact path='/editentry/:id' component={UpdateEntry} />
+        {/* add a catch all 404 page to sign in
+          https://stackoverflow.com/questions/67832234/wrong-react-route-redirect
+        */}
       </Switch>
     </BrowserRouter>
   );

@@ -14,13 +14,21 @@ const Auth = () => {
   const history = useHistory();
   const [formData, setFormData] = useState(initialState);
   const [isSignUp, setIsSignUp] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+  const [isError, setIsError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isSignUp) {
-      dispatch(register(formData, history));
+      dispatch(register(formData, history)).then((invalidReg) => {
+        setIsError(true);
+        setErrorMsg(invalidReg);
+      });
     } else {
-      dispatch(login(formData, history));
+      dispatch(login(formData, history)).then((invalidCred) => {
+        setIsError(true);
+        setErrorMsg(invalidCred);
+      });
     }
   };
 
@@ -101,6 +109,9 @@ const Auth = () => {
                 placeholder='Password'
               />
             </div>
+            <div className=' text-gray-50 bg-red-800 hover:text-gray-100'>
+              {isError && errorMsg}
+            </div>
             <div className='text-gray-300 hover:underline hover:text-gray-100'>
               <p>
                 <button onClick={switchMode}>
@@ -111,7 +122,6 @@ const Auth = () => {
               </p>
             </div>
             <div className='px-4 pb-2 pt-4'>
-              {/* <button className='uppercase block w-full p-4 text-lg rounded-full outline hover:bg-indigo-600 focus:outline-none'> */}
               <button
                 type='submit'
                 className='uppercase block w-full p-4 text-lg rounded-full outline hover:bg-gray-400'

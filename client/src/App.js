@@ -6,10 +6,10 @@ import EntryDetails from './components/EntryDetails/EntryDetails';
 import CreateEntry from './components/CreateEntry/CreateEntry';
 import UpdateEntry from './components/UpdateEntry/UpdateEntry';
 import Main from './components/Main/Main';
+import Error from './components/Error/Error';
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem('profile'));
-  console.log(user);
 
   return (
     <BrowserRouter>
@@ -25,9 +25,7 @@ const App = () => {
         <Route exact path='/entries/:id' component={EntryDetails} />
         <Route exact path='/createentry' component={CreateEntry} />
         <Route exact path='/editentry/:id' component={UpdateEntry} />
-        {/* add a catch all 404 page to sign in
-          https://stackoverflow.com/questions/67832234/wrong-react-route-redirect
-        */}
+        <Route component={Error} />
       </Switch>
     </BrowserRouter>
   );

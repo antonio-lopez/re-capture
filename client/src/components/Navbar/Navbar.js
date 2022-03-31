@@ -31,8 +31,6 @@ const Navbar = () => {
     setUser(JSON.parse(localStorage.getItem('profile')));
   }, [location, user?.token, logout]);
 
-  console.log(user);
-
   return (
     <nav className='relative w-full flex flex-wrap items-center justify-between py-4 bg-[#E2E1E7] text-gray-500 hover:text-gray-700 focus:text-gray-700 shadow-lg'>
       <div className='w-full flex flex-wrap items-center justify-between px-16'>

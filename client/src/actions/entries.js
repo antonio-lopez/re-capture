@@ -19,7 +19,6 @@ export const getEntry = (id) => async (dispatch) => {
   try {
     const { data } = await api.fetchEntry(id);
     dispatch({ type: FETCH_ENTRY, payload: data });
-    console.log('Single Entry:', data);
   } catch (error) {
     console.log(error);
   }

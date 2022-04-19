@@ -1,9 +1,6 @@
 import axios from 'axios';
-// import dotenv from 'dotenv';
-// dotenv.config();
 
-// const url = process.env.REACT_DEVELOPMENT_URL;
-const url = 'http://localhost:5000';
+const url = process.env.REACT_APP_DEPLOYED_URL;
 const API = axios.create({ baseURL: url });
 
 API.interceptors.request.use((req) => {

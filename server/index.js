@@ -29,7 +29,7 @@ app.use(cors());
 
 // routes
 app.get('/', (req, res) => {
-  res.send('jobs api');
+  res.send('Re-capture journal API');
 });
 
 app.use('/api/v1/auth', authRouter);

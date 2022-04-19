@@ -4,7 +4,7 @@ import coverImg from '../../img/re-capture-screenshot.png';
 
 const Main = () => {
   return (
-    <div className='bg-[#E9EBDE]'>
+    <div className='bg-narvik'>
       <div className='py-8'>
         <div className='container m-auto px-6 md:px-12 xl:px-6'>
           <nav className='flex justify-between pb-5'>

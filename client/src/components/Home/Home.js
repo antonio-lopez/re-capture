@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <div>
       {user && (
-        <div className='h-screen bg-[#E2E1E7]'>
+        <div className='h-screen bg-mischka'>
           <Navbar />
           <Entries />
         </div>

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Error = () => {
   return (
-    <div className='bg-[#7D887C] h-screen flex flex-col items-center justify-center'>
+    <div className='bg-moss h-screen flex flex-col items-center justify-center'>
       <main>
         <div className='flex'>
           <h1 className='text-center text-2xl text-slate-100'>

@@ -34,7 +34,7 @@ const EntryDetails = () => {
   if (!entry) return null;
 
   return (
-    <div className='min-h-screen bg-[#E9EBDE]'>
+    <div className='min-h-screen bg-narvik'>
       <main className='relative container mx-auto px-4 '>
         <div className='relative -mx-4 top-0 pt-[17%] overflow-hidden'>
           <img

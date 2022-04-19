@@ -21,8 +21,8 @@ const Entries = () => {
   return (
     <>
       <UserInfo totalPosts={totalPosts} />
-      <div className=' bg-[#E2E1E7] '>
-        <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4 py-4 px-12 bg-[#E2E1E7]'>
+      <div className=' bg-mischka '>
+        <div className='grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 2xl:grid-cols-8 gap-4 py-4 px-12 bg-mischka'>
           <div className='flex flex-col gap-1 outline'>
             <div
               className='flex flex-col m-auto justify-center items-center hover:cursor-pointer'

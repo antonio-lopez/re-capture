@@ -51,7 +51,7 @@ const Auth = () => {
           </h1>
         </div>
       </div>
-      <div className='lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 z-0 bg-[#7D887C]'>
+      <div className='lg:w-1/2 w-full flex items-center justify-center text-center md:px-16 px-0 z-0 bg-moss'>
         <div className="absolute lg:hidden z-10 inset-0 bg-gray-500 bg-no-repeat bg-cover items-center bg-[url('https://images.unsplash.com/photo-1631148820840-2327119cde7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1587&q=80')]">
           <div className='absolute bg-black opacity-60 inset-0 z-0'></div>
         </div>

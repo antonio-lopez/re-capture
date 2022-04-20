@@ -3,9 +3,9 @@ const { StatusCodes } = require('http-status-codes');
 const { BadRequestError, NotFoundError } = require('../errors');
 
 const getAllEntries = async (req, res) => {
-  const entries = await Entry.find({ createdBy: req.user.userId }).sort(
-    'createdAt'
-  );
+  const entries = await Entry.find({ createdBy: req.user.userId }).sort({
+    createdAt: -1,
+  });
   // res.status(StatusCodes.OK).json({ entries });
   res.status(StatusCodes.OK).json(entries);
 };

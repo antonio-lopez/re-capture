@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import coverImg from '../../img/re-capture-screenshot.png';
+import coverImg from '../../img/re-capture-cover-screenshot.png';
 
 const Main = () => {
   return (
